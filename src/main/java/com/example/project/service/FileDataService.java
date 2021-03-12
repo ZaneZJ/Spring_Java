@@ -7,6 +7,8 @@ import com.example.project.repository.FileDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+
 @Service
 @RequiredArgsConstructor
 public class FileDataService {
@@ -27,5 +29,14 @@ public class FileDataService {
 
     public FileData save(FileData fileData) {
         return fileDataRepository.save(fileData);
+    }
+
+    public FileData update(String fileId, FileData fileData) {
+        FileData fileToUpdate = getById(fileId);
+        return fileDataRepository.save(fileData);
+    }
+
+    public void delete(String fileId) {
+        fileDataRepository.deleteById(fileId);
     }
 }

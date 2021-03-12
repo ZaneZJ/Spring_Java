@@ -4,6 +4,7 @@ import com.example.project.model.FileData;
 import com.example.project.model.FileDataWrap;
 import com.example.project.service.FileDataService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,30 @@ public class FileDataController {
                 .status(HttpStatus.CREATED)
                 .location(URI.create("localhost:8080/api/files-data/" + savedFileData.getId()))
                 .body(savedFileData);
+    }
+
+//    PUT /api/files-data/{id} - updates an existing FileData object stored in the database.
+//    Returns status * 204 * (or throws SdaException when no object with the given id exists).
+
+    @PutMapping("/{id}")
+    public FileData update (@PathVariable("id") String fileId,
+                            @RequestBody FileData fileData) {
+        return fileDataService.update(fileId, fileData);
+    }
+
+//    DELETE /api/files-data/{id} - removes an existing FileData object stored in the database.
+//    Returns status * 204 * (or throws SdaException when no object with the given id exists).
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete (@PathVariable("id") String fileId) {
+        try {
+            fileDataService.delete(fileId);
+        } catch (EmptyResultDataAccessException ex) {
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body("No file data with provided id found!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
 }
