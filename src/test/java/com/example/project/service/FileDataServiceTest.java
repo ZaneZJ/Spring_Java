@@ -1,5 +1,6 @@
 package com.example.project.service;
 
+import com.example.project.model.FileData;
 import com.example.project.model.FileDataWrap;
 import com.example.project.repository.FileDataRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -7,13 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.File;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-
-import com.example.project.model.FileData;
 
 class FileDataServiceTest {
 

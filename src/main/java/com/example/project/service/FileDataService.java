@@ -1,5 +1,7 @@
 package com.example.project.service;
 
+import com.example.project.exception.SdaException;
+import com.example.project.model.FileData;
 import com.example.project.model.FileDataWrap;
 import com.example.project.repository.FileDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,4 +17,11 @@ public class FileDataService {
         return new FileDataWrap(fileDataRepository.findAll());
     }
 
+    public FileData getById(String fileId) {
+        return fileDataRepository
+                .findById(fileId)
+                .orElseThrow(
+                        ()->new SdaException("No such file!")
+                );
+    }
 }
