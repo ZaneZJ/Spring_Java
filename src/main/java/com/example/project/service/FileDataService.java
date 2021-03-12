@@ -7,8 +7,6 @@ import com.example.project.repository.FileDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-
 @Service
 @RequiredArgsConstructor
 public class FileDataService {

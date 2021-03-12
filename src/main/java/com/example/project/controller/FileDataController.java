@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.net.URI;
 
 @RestController
@@ -68,6 +67,14 @@ public class FileDataController {
                     .body("No file data with provided id found!");
         }
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+//    OR:
+
+    @DeleteMapping("/test/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTest(@PathVariable final String id) {
+        fileDataService.delete(id);
     }
 
 }
