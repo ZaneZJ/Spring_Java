@@ -24,4 +24,8 @@ public class FileDataService {
                         ()->new SdaException("No such file!")
                 );
     }
+
+    public FileData save(FileData fileData) {
+        return fileDataRepository.save(fileData);
+    }
 }
